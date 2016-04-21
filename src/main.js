@@ -10,7 +10,11 @@
         },
         set: function(val, old){
           if (val) selected = this;
-          xtag.transition(this, val ? 'enter' : 'exit');
+          xtag.transition(this, val ? 'enter' : 'exit', {
+            after: function(){
+              xtag.fireEvent(this, this.selected ? 'show' : 'hide');
+            }
+          });
           if (val && val != old && this.parentNode) xtag.query(document, 'x-page').forEach(function(node){
             if (node != this) node.selected = false;
           }, this);

@@ -8,7 +8,6 @@ x-page {
   display: none;
   position: absolute;
   top: 0;
-  left: 0;
   z-index: 0;
   height: 100vh;
   transition: transform 0.5s ease, opacity 0.5s ease;
@@ -22,14 +21,15 @@ x-page > * {
 x-page,
 x-page > header,
 x-page > footer {
-  width: 100%;
+  left: 0;
+  right: 0;
   box-sizing: border-box;
 }
 
 x-page > header,
 x-page > footer {
   position: fixed;
-  height: 3em;
+  height: 3.25em;
   z-index: 1;
 }
 
@@ -42,11 +42,11 @@ x-page > footer {
 }
 
 x-page > section:not(:first-child) {
-  padding-top: 3em;
+  padding-top: 3.25em;
 }
 
 x-page > section:not(:last-child) {
-  padding-bottom: 3em;
+  padding-bottom: 3.25em;
 }
 
 x-page[transitioning="enter"][transition-enter="slide-left"] > *,
