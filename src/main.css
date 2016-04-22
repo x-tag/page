@@ -30,7 +30,7 @@ x-page > header,
 x-page > footer {
   position: fixed;
   height: 3.25em;
-  z-index: 1;
+  z-index: 2;
 }
 
 x-page > header {
