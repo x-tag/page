@@ -158,6 +158,7 @@ x-page[transitioning="enter"]:not([transition-enter]) > *,
 x-page[transitioning="enter"][transition-reverse]:not([transition-exit]) > * {
   opacity: 1 !important;
   transform: translate(0%, 0%) scale(1) rotate(0deg) !important;
+  will-change: auto;
 }
 
 @media (max-device-width: 1024px) {
