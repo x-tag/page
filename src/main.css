@@ -154,8 +154,8 @@ x-page[transition="enter"] > *,
 x-page[transition="enter"][transitioning] > *,
 x-page[transition="enter"][transition-enter="scale"] > *,
 x-page[transition="enter"][transition-reverse][transition-exit="scale"] > *,
-x-page[transition="enter"][transition-enter="scale"] > *,
-x-page[transition="enter"][transition-reverse][transition-exit="scale"] > * {
+x-page[transitioning="enter"]:not([transition-enter]) > *,
+x-page[transitioning="enter"][transition-reverse]:not([transition-exit]) > * {
   opacity: 1 !important;
   transform: translate(0%, 0%) scale(1) rotate(0deg) !important;
 }
