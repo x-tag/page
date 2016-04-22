@@ -157,7 +157,7 @@ x-page[transition="enter"][transition-reverse][transition-exit="scale"] > *,
 x-page[transitioning="enter"]:not([transition-enter]) > *,
 x-page[transitioning="enter"][transition-reverse]:not([transition-exit]) > * {
   opacity: 1 !important;
-  transform: translate(0%, 0%) scale(1) rotate(0deg) !important;
+  transform: none !important;
   will-change: auto;
 }
 
