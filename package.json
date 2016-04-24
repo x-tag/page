@@ -1,6 +1,6 @@
 {
   "name": "x-page",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "dependencies": {},
   "devDependencies": {
     "bower": "~1.7.9",

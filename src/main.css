@@ -13,7 +13,7 @@ x-page {
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-x-page > * {
+x-page > *:not([x-page-ignore]) {
   transition: inherit;
   will-change: opacity, transform, -webkit-transform;
 }
@@ -41,24 +41,24 @@ x-page > footer {
   bottom: 0;
 }
 
-x-page[transitioning="enter"][transition-enter="slide-left"] > *,
-x-page[transitioning="exit"][transition-exit="slide-left"] > *,
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-right"] > *,
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-left"] > * {
+x-page[transitioning="enter"][transition-enter="slide-left"] > *:not([x-page-ignore]),
+x-page[transitioning="exit"][transition-exit="slide-left"] > *:not([x-page-ignore]),
+x-page[transitioning="enter"][transition-reverse][transition-exit="slide-right"] > *:not([x-page-ignore]),
+x-page[transitioning="exit"][transition-reverse][transition-enter="slide-left"] > *:not([x-page-ignore]) {
   transform: translate(100%, 0%);
 }
 
-x-page[transitioning="enter"][transition-enter="slide-right"] > *,
-x-page[transitioning="exit"][transition-exit="slide-right"] > *,
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-left"] > *,
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-right"] > * {
+x-page[transitioning="enter"][transition-enter="slide-right"] > *:not([x-page-ignore]),
+x-page[transitioning="exit"][transition-exit="slide-right"] > *:not([x-page-ignore]),
+x-page[transitioning="enter"][transition-reverse][transition-exit="slide-left"] > *:not([x-page-ignore]),
+x-page[transitioning="exit"][transition-reverse][transition-enter="slide-right"] > *:not([x-page-ignore]) {
   transform: translate(-100%, 0%);
 }
 
-x-page[transitioning="enter"][transition-enter="slide-down"] > *:not(header):not(footer),
-x-page[transitioning="exit"][transition-exit="slide-down"] > *:not(header):not(footer),
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-up"] > *:not(header):not(footer),
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-down"] > *:not(header):not(footer),
+x-page[transitioning="enter"][transition-enter="slide-down"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="exit"][transition-exit="slide-down"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="enter"][transition-reverse][transition-exit="slide-up"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="exit"][transition-reverse][transition-enter="slide-down"] > *:not(header):not(footer):not([x-page-ignore]),
 x-page[transitioning="enter"][transition-enter="slide-down"] > header,
 x-page[transitioning="exit"][transition-exit="slide-down"] > header,
 x-page[transitioning="enter"][transition-reverse][transition-exit="slide-up"] > header,
@@ -70,10 +70,10 @@ x-page[transitioning="exit"][transition-reverse][transition-enter="slide-down"] 
   transform: translate(0%, 100vh);
 }
 
-x-page[transitioning="enter"][transition-enter="slide-up"] > *:not(header):not(footer),
-x-page[transitioning="exit"][transition-exit="slide-up"] > *:not(header):not(footer),
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-down"] > *:not(header):not(footer),
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-up"] > *:not(header):not(footer),
+x-page[transitioning="enter"][transition-enter="slide-up"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="exit"][transition-exit="slide-up"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="enter"][transition-reverse][transition-exit="slide-down"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="exit"][transition-reverse][transition-enter="slide-up"] > *:not(header):not(footer):not([x-page-ignore]),
 x-page[transitioning="enter"][transition-enter="slide-up"] > header,
 x-page[transitioning="exit"][transition-exit="slide-up"] > header,
 x-page[transitioning="enter"][transition-reverse][transition-exit="slide-down"] > header,
@@ -109,10 +109,10 @@ x-page[transitioning="exit"][transition-reverse][transition-enter="scale"] > foo
   transform: translate(0%, 100%);
 }
 
-x-page[transitioning="enter"][transition-enter="scale"] > *:not(header):not(footer),
-x-page[transitioning="exit"][transition-exit="scale"] > *:not(header):not(footer),
-x-page[transitioning="enter"][transition-reverse][transition-exit="scale"] > *:not(header):not(footer),
-x-page[transitioning="exit"][transition-reverse][transition-enter="scale"] > *:not(header):not(footer) {
+x-page[transitioning="enter"][transition-enter="scale"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="exit"][transition-exit="scale"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="enter"][transition-reverse][transition-exit="scale"] > *:not(header):not(footer):not([x-page-ignore]),
+x-page[transitioning="exit"][transition-reverse][transition-enter="scale"] > *:not(header):not(footer):not([x-page-ignore]) {
   opacity: 0;
   transform: translate(0%, 0%) scale(0.5);
 }
@@ -130,12 +130,12 @@ x-page[transition="enter"]:not([transitioning]) {
   overflow-y: visible !important;
 }
 
-x-page[transition="enter"] > *,
-x-page[transition="enter"][transitioning] > *,
-x-page[transition="enter"][transition-enter="scale"] > *,
-x-page[transition="enter"][transition-reverse][transition-exit="scale"] > *,
-x-page[transitioning="enter"]:not([transition-enter]) > *,
-x-page[transitioning="enter"][transition-reverse]:not([transition-exit]) > * {
+x-page[transition="enter"] > *:not([x-page-ignore]),
+x-page[transition="enter"][transitioning] > *:not([x-page-ignore]),
+x-page[transition="enter"][transition-enter="scale"] > *:not([x-page-ignore]),
+x-page[transition="enter"][transition-reverse][transition-exit="scale"] > *:not([x-page-ignore]),
+x-page[transitioning="enter"]:not([transition-enter]) > *:not([x-page-ignore]),
+x-page[transitioning="enter"][transition-reverse]:not([transition-exit]) > *:not([x-page-ignore]) {
   opacity: 1 !important;
   transform: translate(0%, 0%) scale(1) rotate(0deg) !important;
 }
