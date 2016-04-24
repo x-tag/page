@@ -41,14 +41,6 @@ x-page > footer {
   bottom: 0;
 }
 
-x-page > section:not(:first-child) {
-  padding-top: 3.25em;
-}
-
-x-page > section:not(:last-child) {
-  padding-bottom: 3.25em;
-}
-
 x-page[transitioning="enter"][transition-enter="slide-left"] > *,
 x-page[transitioning="exit"][transition-exit="slide-left"] > *,
 x-page[transitioning="enter"][transition-reverse][transition-exit="slide-right"] > *,
@@ -63,13 +55,10 @@ x-page[transitioning="exit"][transition-reverse][transition-enter="slide-right"]
   transform: translate(-100%, 0%);
 }
 
-x-page[transitioning="enter"][transition-enter="slide-down"] > section,
-x-page[transitioning="exit"][transition-exit="slide-down"] > section,
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-up"] > section,
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-down"] > section {
-  transform: translate(0%, 100vh);
-}
-
+x-page[transitioning="enter"][transition-enter="slide-down"] > *:not(header):not(footer),
+x-page[transitioning="exit"][transition-exit="slide-down"] > *:not(header):not(footer),
+x-page[transitioning="enter"][transition-reverse][transition-exit="slide-up"] > *:not(header):not(footer),
+x-page[transitioning="exit"][transition-reverse][transition-enter="slide-down"] > *:not(header):not(footer),
 x-page[transitioning="enter"][transition-enter="slide-down"] > header,
 x-page[transitioning="exit"][transition-exit="slide-down"] > header,
 x-page[transitioning="enter"][transition-reverse][transition-exit="slide-up"] > header,
@@ -81,13 +70,10 @@ x-page[transitioning="exit"][transition-reverse][transition-enter="slide-down"] 
   transform: translate(0%, 100vh);
 }
 
-x-page[transitioning="enter"][transition-enter="slide-up"] > section,
-x-page[transitioning="exit"][transition-exit="slide-up"] > section,
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-down"] > section,
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-up"] > section {
-  transform: translate(0%, -100vh);
-}
-
+x-page[transitioning="enter"][transition-enter="slide-up"] > *:not(header):not(footer),
+x-page[transitioning="exit"][transition-exit="slide-up"] > *:not(header):not(footer),
+x-page[transitioning="enter"][transition-reverse][transition-exit="slide-down"] > *:not(header):not(footer),
+x-page[transitioning="exit"][transition-reverse][transition-enter="slide-up"] > *:not(header):not(footer),
 x-page[transitioning="enter"][transition-enter="slide-up"] > header,
 x-page[transitioning="exit"][transition-exit="slide-up"] > header,
 x-page[transitioning="enter"][transition-reverse][transition-exit="slide-down"] > header,
@@ -123,10 +109,10 @@ x-page[transitioning="exit"][transition-reverse][transition-enter="scale"] > foo
   transform: translate(0%, 100%);
 }
 
-x-page[transitioning="enter"][transition-enter="scale"] > section,
-x-page[transitioning="exit"][transition-exit="scale"] > section,
-x-page[transitioning="enter"][transition-reverse][transition-exit="scale"] > section,
-x-page[transitioning="exit"][transition-reverse][transition-enter="scale"] > section {
+x-page[transitioning="enter"][transition-enter="scale"] > *:not(header):not(footer),
+x-page[transitioning="exit"][transition-exit="scale"] > *:not(header):not(footer),
+x-page[transitioning="enter"][transition-reverse][transition-exit="scale"] > *:not(header):not(footer),
+x-page[transitioning="exit"][transition-reverse][transition-enter="scale"] > *:not(header):not(footer) {
   opacity: 0;
   transform: translate(0%, 0%) scale(0.5);
 }
@@ -140,14 +126,8 @@ x-page[transitioning] {
   overflow: hidden;
 }
 
-x-page[transitioning] > section {
-  height: 100vh;
-  overflow: hidden;
-}
-
 x-page[transition="enter"]:not([transitioning]) {
   overflow-y: visible !important;
-  transform: none !important;
 }
 
 x-page[transition="enter"] > *,
@@ -157,8 +137,7 @@ x-page[transition="enter"][transition-reverse][transition-exit="scale"] > *,
 x-page[transitioning="enter"]:not([transition-enter]) > *,
 x-page[transitioning="enter"][transition-reverse]:not([transition-exit]) > * {
   opacity: 1 !important;
-  transform: none !important;
-  will-change: auto;
+  transform: translate(0%, 0%) scale(1) rotate(0deg) !important;
 }
 
 @media (max-device-width: 1024px) {
