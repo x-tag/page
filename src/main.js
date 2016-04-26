@@ -2,18 +2,7 @@
 
   var selected;
 
-  function clearStatusBar(){
-    console.log(document.height <= window.outerHeight, document.height, window.outerHeight);
-    if (document.height <= window.outerHeight) document.body.style.height = window.outerHeight + 1 + 'px';
-    window.scrollTo(0, 1);
-  }
-
-  setTimeout(clearStatusBar, 50);
-
   xtag.register('x-page', {
-    events: {
-      tapstart: clearStatusBar
-    },
     accessors: {
       selected: {
         attribute: {

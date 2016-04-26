@@ -1,16 +1,11 @@
 
-body {
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
 x-page {
   display: none;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
+  height: 100%;
   z-index: 0;
   box-sizing: border-box;
   will-change: opacity, transform, -webkit-transform;
@@ -34,16 +29,20 @@ x-page > footer {
 }
 
 x-page > section {
-  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   overflow: auto;
 }
 
 x-page > section:not(:first-child) {
-  padding-top: 3.25em;
+  top: 3.25em;
 }
 
 x-page > section:not(:last-child) {
-  padding-bottom: 3.25em;
+  bottom: 3.25em;
 }
 
 x-page[transitioning="enter"][transition-enter="slide-left"],
@@ -95,14 +94,6 @@ x-page[transitioning="exit"][transition-reverse][transition-enter="scale"] {
 x-page[transitioning],
 x-page[transition="enter"] {
   display: block;
-}
-
-x-page[transitioning] {
-  overflow: hidden;
-}
-
-x-page[transition="enter"]:not([transitioning]) {
-  overflow-y: visible !important;
 }
 
 x-page[transition="enter"],
