@@ -37,14 +37,6 @@ x-page > section {
   overflow: auto;
 }
 
-x-page > section:not(:first-child) {
-  top: 3.25em;
-}
-
-x-page > section:not(:last-child) {
-  bottom: 3.25em;
-}
-
 x-page[transitioning="enter"][transition-enter="slide-left"],
 x-page[transitioning="exit"][transition-exit="slide-left"],
 x-page[transitioning="enter"][transition-reverse][transition-exit="slide-right"],
