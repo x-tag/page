@@ -103,7 +103,6 @@ x-page[transitioning] {
 
 x-page[transition="enter"]:not([transitioning]) {
   overflow-y: visible !important;
-  transform: none !important;
 }
 
 x-page[transition="enter"],
