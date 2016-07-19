@@ -63,25 +63,25 @@ x-page > section:not(:last-child) {
   padding-bottom: 3.5em;
 }
 
-x-page > section:not([page-transition]),
 x-page > [page-transition~="fade"] {
   opacity: 0;
 }
 
-x-page > header:not([page-transition]),
 x-page > [page-transition~="slide-down"] {
   top: 0;
   transform: translate(0%, -100%);
   -webkit-transform: translate(0%, -100%);
 }
 
-x-page > footer:not([page-transition]),
 x-page > [page-transition~="slide-up"] {
   bottom: 0;
   -webkit-transform: translate(0%, 100%);
   transform: translate(0%, 100%);
 }
 
+x-page > header:not([page-transition]),
+x-page > footer:not([page-transition]),
+x-page > section:not([page-transition]),
 x-page > [page-transition~="slide-right"] {
   left: 0;
   -webkit-transform: translate(-100%, 0%);
@@ -94,26 +94,27 @@ x-page > [page-transition~="slide-left"] {
   transform: translate(100%, 0%);
 }
 
+x-page[selected] > section {
+  z-index: 1;
+}
+
 x-page[selected] > header,
 x-page[selected] > footer {
   z-index: 2;
 }
 
-x-page[selected] > section {
-  z-index: 1;
+x-page:not([selected]):not([active]) > section {
+  z-index: 3;
+}
+
+x-page:not([selected]):not([active]) > header,
+x-page:not([selected]):not([active]) > footer {
+  z-index: 4;
 }
 
 x-page:not([active]) > section,
 x-page:not([active]) > [page-content] {
   position: fixed;
-}
-
-x-page:not([active]) > [page-transition~="slide"], {
-  z-index: 3;
-}
-x-page:not([active]) > header:not([page-transition]),
-x-page:not([active]) > footer:not([page-transition]) {
-  z-index: 4;
 }
 
 x-page[active] {
