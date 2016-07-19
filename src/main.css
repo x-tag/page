@@ -27,7 +27,8 @@ x-page > * {
 x-page > header,
 x-page > footer {
   position: fixed;
-  width: 100%;
+  left: 0;
+  right: 0;
   height: 3.5em;
   line-height: 3.5em;
   z-index: 1;
