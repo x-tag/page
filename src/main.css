@@ -95,22 +95,18 @@ x-page > [page-transition~="slide-left"] {
   transform: translate(100%, 0%);
 }
 
-x-page[selected] > section {
+x-page[selected] > header,
+x-page[selected] > footer {
   z-index: 1;
 }
 
-x-page[selected] > header,
-x-page[selected] > footer {
+x-page:not([selected]):not([active]) > * {
   z-index: 2;
-}
-
-x-page:not([selected]):not([active]) > section {
-  z-index: 3;
 }
 
 x-page:not([selected]):not([active]) > header,
 x-page:not([selected]):not([active]) > footer {
-  z-index: 4;
+  z-index: 3;
 }
 
 x-page:not([active]) > section,

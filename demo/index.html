@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Scene Demo - X-Tag</title>
+  <title>X-Page Demo - X-Tag</title>
 
   <link rel="stylesheet" type="text/css" href="x-tag-components.css"/>
   <link rel="stylesheet" type="text/css" href="../src/main.css"/>
@@ -26,25 +26,25 @@
       background: limegreen;
     }
 
-    #scene2 section {
+    #p2 section {
       height: 1500px;
     }
 
-    #scene1 header,
-    #scene1 footer {
+    #p1 header,
+    #p1 footer {
       background: lightblue;
     }
 
-    #scene1 section {
+    #p1 section {
       background: yellow;
     }
 
-    #scene2 header,
-    #scene2 footer {
+    #p2 header,
+    #p2 footer {
       background: gold;
     }
 
-    #scene2 section {
+    #p2 section {
       background: pink;
     }
 
@@ -55,13 +55,13 @@
 
   <button onclick="active = document.querySelector('[active]'); active.active = false; (active.nextElementSibling || active.previousElementSibling).active = true;">Switch Scenes</button>
 
-	<x-page id="scene1" active>
+	<x-page id="p1" active>
     <header>Scene 1 Header</header>
     <section></section>
     <footer>Scene 1 Footer</footer>
   </x-page>
 
-  <x-page id="scene2">
+  <x-page id="p2">
     <header>Scene 2 Header</header>
     <section></section>
     <footer>Scene 2 Footer</footer>
