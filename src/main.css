@@ -1,25 +1,36 @@
 
 x-page {
-  display: none;
+  display: block;
+  visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 100%;
-  z-index: 0;
+  min-height: 100%;
+  box-sizing: border-box;
+  contain: layout style;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+
+x-page > * {
+  position: absolute;
+  contain: layout style;
   box-sizing: border-box;
   will-change: opacity, transform, -webkit-transform;
-  -webkit-transition: transform 0.5s ease, opacity 0.5s ease;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  -webkit-transition: opacity ease, -webkit-transform ease;
+  transition: opacity ease, transform ease;
+  -webkit-transition-duration: inherit;
+  transition-duration: inherit;
 }
 
 x-page > header,
 x-page > footer {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 3.25em;
-  line-height: 3.25em;
-  z-index: 3;
+  height: 3.5em;
+  line-height: 3.5em;
+  z-index: 1;
 }
 
 x-page > header {
@@ -32,82 +43,94 @@ x-page > footer {
 
 x-page > section {
   position: absolute;
-  top: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  overflow: visible;
+}
+
+x-page > section,
+x-page > [page-content] {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+x-page > header ~ section {
+  padding-top: 3.5em;
+}
+
+x-page > section:not(:last-child) {
+  padding-bottom: 3.5em;
+}
+
+x-page > section:not([page-transition]),
+x-page > [page-transition~="fade"] {
+  opacity: 0;
+}
+
+x-page > header:not([page-transition]),
+x-page > [page-transition~="slide-down"] {
+  top: 0;
+  transform: translate(0%, -100%);
+  -webkit-transform: translate(0%, -100%);
+}
+
+x-page > footer:not([page-transition]),
+x-page > [page-transition~="slide-up"] {
   bottom: 0;
-  overflow: auto;
+  -webkit-transform: translate(0%, 100%);
+  transform: translate(0%, 100%);
 }
 
-x-page[transitioning="enter"][transition-enter="slide-left"],
-x-page[transitioning="exit"][transition-exit="slide-left"],
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-right"],
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-left"] {
-  -webkit-transform: translate(100%, 0%);
-  transform: translate(100%, 0%);
-}
-
-x-page[transitioning="enter"][transition-enter="slide-right"],
-x-page[transitioning="exit"][transition-exit="slide-right"],
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-left"],
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-right"] {
+x-page > [page-transition~="slide-right"] {
+  left: 0;
   -webkit-transform: translate(-100%, 0%);
   transform: translate(-100%, 0%);
 }
 
-x-page[transitioning="enter"][transition-enter="slide-down"],
-x-page[transitioning="exit"][transition-exit="slide-down"],
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-up"],
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-down"] {
-  transform: translate(0%, 100%);
-  -webkit-transform: translate(0%, 100%);
+x-page > [page-transition~="slide-left"] {
+  right: 0;
+  -webkit-transform: translate(100%, 0%);
+  transform: translate(100%, 0%);
 }
 
-x-page[transitioning="enter"][transition-enter="slide-up"],
-x-page[transitioning="exit"][transition-exit="slide-up"],
-x-page[transitioning="enter"][transition-reverse][transition-exit="slide-down"],
-x-page[transitioning="exit"][transition-reverse][transition-enter="slide-up"] {
-  -webkit-transform: translate(0%, -100%);
-  transform: translate(0%, -100%);
-}
-
-x-page[selected],
-x-page[transitioning="enter"][transition-enter^="slide"],
-x-page[transitioning="exit"][transition-exit^="slide"] {
-  z-index: 1;
-}
-
-x-page[transitioning="exit"][transition-reverse][transition-enter^="slide"] {
+x-page[selected] > header,
+x-page[selected] > footer {
   z-index: 2;
 }
 
-x-page[transitioning="enter"][transition-enter="scale"],
-x-page[transitioning="exit"][transition-exit="scale"],
-x-page[transitioning="enter"][transition-reverse][transition-exit="scale"],
-x-page[transitioning="exit"][transition-reverse][transition-enter="scale"] {
-  opacity: 0;
-  -webkit-transform: translate(0%, 0%) scale(0.5);
-  transform: translate(0%, 0%) scale(0.5);
+x-page[selected] > section {
+  z-index: 1;
 }
 
-x-page[transitioning],
-x-page[transition="enter"] {
-  display: block;
+x-page:not([active]) > section,
+x-page:not([active]) > [page-content] {
+  position: fixed;
 }
 
-x-page[transition="enter"],
-x-page[transition="enter"][transitioning],
-x-page[transition="enter"][transition-enter="scale"],
-x-page[transition="enter"][transition-reverse][transition-exit="scale"],
-x-page[transitioning="enter"]:not([transition-enter]),
-x-page[transitioning="enter"][transition-reverse]:not([transition-exit]) {
-  opacity: 1 !important;
-  -webkit-transform: translate(0%, 0%) scale(1) rotate(0deg) !important;
-  transform: translate(0%, 0%) scale(1) rotate(0deg) !important;
+x-page:not([active]) > [page-transition~="slide"], {
+  z-index: 3;
+}
+x-page:not([active]) > header:not([page-transition]),
+x-page:not([active]) > footer:not([page-transition]) {
+  z-index: 4;
+}
+
+x-page[active] {
+  visibility: visible;
+}
+
+x-page[active] > header,
+x-page[active] > footer,
+x-page[active] > section,
+x-page[active] > [page-transition] {
+  opacity: 1;
+  -webkit-transform: translate(0%, 0%) scale(1) rotate(0deg);
+  transform: translate(0%, 0%) scale(1) rotate(0deg);
 }
 
 @media (max-device-width: 1024px) {
-  x-page {
+  x-page > * {
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
   }

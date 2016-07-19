@@ -4,17 +4,15 @@
 
   xtag.register('x-page', {
     accessors: {
+      active: {
+        attribute: { boolean: true },
+      },
       selected: {
         attribute: {
           boolean: true
         },
         set: function(val, old){
           if (val) selected = this;
-          xtag.transition(this, val ? 'enter' : 'exit', {
-            after: function(){
-              xtag.fireEvent(this, this.selected ? 'show' : 'hide');
-            }
-          });
           if (val && val != old && this.parentNode) xtag.query(document, 'x-page').forEach(function(node){
             if (node != this) node.selected = false;
           }, this);
@@ -22,17 +20,13 @@
       }
     },
     methods: {
-      show: function(reverse){
-        var last = selected;
-        if (reverse) {
-          this.setAttribute('transition-reverse', '');
-          if (last) last.setAttribute('transition-reverse', '');
-        }
-        else {
-          this.removeAttribute('transition-reverse');
-          if (last) last.removeAttribute('transition-reverse');
-        }
+      show: function(){
         this.selected = true;
+        this.active = true;
+      },
+      hide: function(){
+        this.selected = false;
+        this.active = false;
       }
     }
   });

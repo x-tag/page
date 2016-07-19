@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Scene Demo - X-Tag</title>
+
+  <link rel="stylesheet" type="text/css" href="x-tag-components.css"/>
+  <link rel="stylesheet" type="text/css" href="../src/main.css"/>
+
+  <script type="text/javascript" src="x-tag-components.js"></script>
+  <script type="text/javascript" src="../src/main.js"></script>
+
+  <style>
+    button {
+      position: fixed;
+      top: 5em;
+      left: 5em;
+      z-index: 10;
+    }
+
+    section {
+      width: 50%;
+      height: 3000px;
+      margin: 0 auto;
+      background: limegreen;
+    }
+
+    #scene2 section {
+      height: 1500px;
+    }
+
+    #scene1 header,
+    #scene1 footer {
+      background: lightblue;
+    }
+
+    #scene1 section {
+      background: yellow;
+    }
+
+    #scene2 header,
+    #scene2 footer {
+      background: gold;
+    }
+
+    #scene2 section {
+      background: pink;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <button onclick="active = document.querySelector('[active]'); active.active = false; (active.nextElementSibling || active.previousElementSibling).active = true;">Switch Scenes</button>
+
+	<x-page id="scene1" active>
+    <header page-transition="slide-right">Scene 1 Header</header>
+    <section page-transition="slide-right"></section>
+    <footer page-transition="slide-right">Scene 1 Footer</footer>
+  </x-page>
+
+  <x-page id="scene2">
+    <header page-transition="slide-right">Scene 2 Header</header>
+    <section page-transition="slide-right"></section>
+    <footer page-transition="slide-right">Scene 2 Footer</footer>
+  </x-page>
+
+</body>
+
+</html>
