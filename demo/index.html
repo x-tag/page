@@ -26,12 +26,23 @@
       background: limegreen;
     }
 
+    /*section div {
+      position: fixed;
+      top: 40%;
+      left: 40%;
+      height: 10em;
+      width: 10em;
+      background: purple;
+    }*/
+
     #p2 section {
       height: 1500px;
     }
 
     #p1 header,
-    #p1 footer {
+    #p1 footer,
+    #p3 header,
+    #p3 footer {
       background: lightblue;
     }
 
@@ -53,18 +64,24 @@
 
 <body>
 
-  <button onclick="active = document.querySelector('[active]'); active.active = false; (active.nextElementSibling || active.previousElementSibling).active = true;">Switch Scenes</button>
+  <button onclick="active = document.querySelector('[active]'); active.active = false; (active.nextElementSibling || this.nextElementSibling).active = true;">Switch Scenes</button>
 
 	<x-page id="p1" active>
     <header>Scene 1 Header</header>
-    <section></section>
+    <section><div></div></section>
     <footer>Scene 1 Footer</footer>
   </x-page>
 
   <x-page id="p2">
     <header>Scene 2 Header</header>
-    <section></section>
+    <section><div></div></section>
     <footer>Scene 2 Footer</footer>
+  </x-page>
+
+  <x-page id="p3">
+    <header page-transition="slide-up">Scene 2 Header</header>
+    <section page-transition="slide-up"><div></div></section>
+    <footer page-transition="slide-up">Scene 2 Footer</footer>
   </x-page>
 
 </body>
