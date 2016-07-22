@@ -19,11 +19,16 @@
       z-index: 10;
     }
 
+    header,
+    footer {
+      background: lightblue;
+    }
+
     section {
       width: 50%;
       height: 3000px;
       margin: 0 auto;
-      background: limegreen;
+      background: url(lorem.jpg);
     }
 
     /*section div {
@@ -35,28 +40,9 @@
       background: purple;
     }*/
 
-    #p2 section {
-      height: 1500px;
-    }
-
-    #p1 header,
-    #p1 footer,
-    #p3 header,
-    #p3 footer {
-      background: lightblue;
-    }
-
-    #p1 section {
-      background: yellow;
-    }
-
-    #p2 header,
-    #p2 footer {
+    x-page:nth-child(even) header,
+    x-page:nth-child(even) footer {
       background: gold;
-    }
-
-    #p2 section {
-      background: pink;
     }
 
   </style>
@@ -66,23 +52,37 @@
 
   <button onclick="active = document.querySelector('[active]'); active.active = false; (active.nextElementSibling || this.nextElementSibling).active = true;">Switch Scenes</button>
 
-	<x-page id="p1" active>
+	<x-page active>
     <header>Scene 1 Header</header>
     <section><div></div></section>
     <footer>Scene 1 Footer</footer>
   </x-page>
 
-  <x-page id="p2">
+  <x-page page-transition="slide-left">
     <header>Scene 2 Header</header>
     <section><div></div></section>
     <footer>Scene 2 Footer</footer>
   </x-page>
 
-  <x-page id="p3">
-    <header page-transition="slide-up">Scene 2 Header</header>
-    <section page-transition="slide-up"><div></div></section>
-    <footer page-transition="slide-up">Scene 2 Footer</footer>
+  <x-page page-transition="slide-right">
+    <header>Scene 2 Header</header>
+    <section><div></div></section>
+    <footer>Scene 2 Footer</footer>
   </x-page>
+
+  <x-page>
+    <header>Scene 3 Header</header>
+    <section><div></div></section>
+    <footer>Scene 3 Footer</footer>
+  </x-page>
+
+  <x-page>
+    <header>Scene 4 Header</header>
+    <section><div></div></section>
+    <footer>Scene 4 Footer</footer>
+  </x-page>
+
+
 
 </body>
 

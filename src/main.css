@@ -1,20 +1,28 @@
 
+body:not([allow-scroll-x]) {
+  overflow-x: hidden;
+}
+
 x-page {
   display: block;
   visibility: hidden;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   min-height: 100%;
   box-sizing: border-box;
   contain: layout style;
+  -webkit-transition: opacity ease;
+  transition: opacity ease;
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
 }
 
-x-page > * {
-  position: absolute;
+x-page > header,
+x-page > footer,
+x-page > section {
+  position: fixed;
   contain: layout style;
   box-sizing: border-box;
   -webkit-transition: opacity ease, -webkit-transform ease;
@@ -25,7 +33,6 @@ x-page > * {
 
 x-page > header,
 x-page > footer {
-  position: fixed;
   left: 0;
   right: 0;
   height: 3.5em;
@@ -47,10 +54,6 @@ x-page > section {
   right: 0;
   width: 100%;
   overflow: visible;
-}
-
-x-page > section,
-x-page > [page-content] {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -63,49 +66,46 @@ x-page > section:not(:last-child) {
   padding-bottom: 3.5em;
 }
 
-x-page > [page-transition~="fade"] {
+x-page:not([page-transition]) > section,
+x-page[page-transition~="fade"] {
   opacity: 0;
 }
 
-x-page > [page-transition~="slide-up"] {
+x-page[page-transition~="slide-up"] > * {
   transform: translate(0%, 100vh);
   -webkit-transform: translate(0%, 100vh);
 }
 
-x-page > [page-transition~="slide-down"] {
+x-page[page-transition~="slide-down"] > * {
   transform: translate(0%, -100vh);
   -webkit-transform: translate(0%, -100vh);
 }
 
-x-page > [page-transition~="slide-top"] {
-  top: 0;
-  transform: translate(0%, -100%);
-  -webkit-transform: translate(0%, -100%);
-}
-
-x-page > [page-transition~="slide-bottom"] {
-  bottom: 0;
-  -webkit-transform: translate(0%, 100%);
-  transform: translate(0%, 100%);
-}
-
-x-page > [page-transition~="slide-right"] {
-  right: 0;
-  -webkit-transform: translate(100%, 0%);
-  transform: translate(100%, 0%);
-}
-
-x-page > header:not([page-transition]),
-x-page > footer:not([page-transition]),
-x-page > section:not([page-transition]),
-x-page > [page-transition~="slide-left"] {
+x-page[page-transition~="slide-left"] > * {
   left: 0;
   -webkit-transform: translate(-100%, 0%);
   transform: translate(-100%, 0%);
 }
 
-x-page[selected] > header,
-x-page[selected] > footer {
+x-page[page-transition~="slide-right"] > * {
+  right: 0;
+  -webkit-transform: translate(100%, 0%);
+  transform: translate(100%, 0%);
+}
+
+x-page:not([page-transition]) > header {
+  top: 0;
+  transform: translate(0%, -100%);
+  -webkit-transform: translate(0%, -100%);
+}
+
+x-page:not([page-transition]) > footer {
+  bottom: 0;
+  -webkit-transform: translate(0%, 100%);
+  transform: translate(0%, 100%);
+}
+
+x-page[selected] {
   z-index: 1;
 }
 
@@ -118,19 +118,17 @@ x-page:not([selected]):not([active]) > footer {
   z-index: 3;
 }
 
-x-page:not([active]) > section,
-x-page:not([active]) > [page-content] {
-  position: fixed;
+x-page[active] {
+  position: absolute;
 }
 
-x-page[active] {
+x-page[active],
+x-page[transitioning="inactive"] {
   visibility: visible;
 }
 
-x-page[active] > header,
-x-page[active] > footer,
-x-page[active] > section,
-x-page[active] > [page-transition] {
+x-page[active]:not([transition="inactive"]),
+x-page[active]:not([transition="inactive"]) > * {
   opacity: 1;
   -webkit-transform: none;
   transform: none;
