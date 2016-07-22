@@ -25,9 +25,8 @@
       show: function(deactivate){
         this.selected = true;
         if (deactivate) xtag.query(document, 'x-page').forEach(function(node){
-          node.active = false;
-        });
-        this.active = true;
+          node.active = node == this;
+        }, this);
       },
       hide: function(){
         this.selected = false;
