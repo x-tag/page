@@ -140,3 +140,31 @@ x-page[active]:not([transition="inactive"]) > * {
     transition-duration: 0.3s;
   }
 }
+
+button {
+    position: fixed;
+    top: 5em;
+    left: 5em;
+    z-index: 10;
+  }
+  
+  header,
+  footer {
+    background: lightblue;
+  }
+  
+  section {
+    width: 50%;
+    height: 3000px;
+    margin: 0 auto;
+  }
+  
+  x-page:nth-child(even) header,
+  x-page:nth-child(even) footer {
+    background: gold;
+  }
+  
+  x-page:last-of-type header,
+  x-page:last-of-type footer {
+    background-color: gray;
+  }
