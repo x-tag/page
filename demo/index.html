@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>X-Page Demo - X-Tag</title>
+
+  <link rel="stylesheet" type="text/css" href="x-tag-components.css" />
+  <link rel="stylesheet" type="text/css" href="../src/main.css" />
+
+  <script type="text/javascript" src="x-tag-components.js"></script>
+  <script type="text/javascript" src="../src/main.js"></script>
+
+</head>
+<body>
+
+  <button id="switchScene">Switch Scenes</button>
+
+  <x-page active>
+    <header>Scene 1 Header</header>
+    <section>
+      <div></div>
+    </section>
+    <footer>Scene 1 Footer</footer>
+  </x-page>
+
+  <x-page page-transition="slide-left">
+    <header>Scene 2 Header</header>
+    <section>
+      <div></div>
+    </section>
+    <footer>Scene 2 Footer</footer>
+  </x-page>
+
+  <x-page page-transition="slide-right">
+    <header>Scene 3 Header</header>
+    <section>
+      <div></div>
+    </section>
+    <footer>Scene 3 Footer</footer>
+  </x-page>
+
+  <x-page>
+    <header>Scene 4 Header</header>
+    <section>
+      <div></div>
+    </section>
+    <footer>Scene 4 Footer</footer>
+  </x-page>
+
+  <x-page>
+    <header>Scene 5 Header</header>
+    <section>
+      <div></div>
+    </section>
+    <footer>Scene 5 Footer</footer>
+  </x-page>
+
+  <script>
+(function () {
+	document.getElementById('switchScene').addEventListener('click', function () {
+		var active = document.querySelector('[active]'),
+			next; 
+		active.active = false; 
+		next = (active.nextElementSibling || this.nextElementSibling);
+		if (next.tagName !== 'X-PAGE') {
+			next = document.querySelector('x-page');
+		}
+		next.active = true;
+	}, false);
+}())
+</script>
+
+
+</body>
+</html>
