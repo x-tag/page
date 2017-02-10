@@ -5,85 +5,72 @@
   <meta charset="utf-8" />
   <title>X-Page Demo - X-Tag</title>
 
-  <link rel="stylesheet" type="text/css" href="x-tag-components.css"/>
-  <link rel="stylesheet" type="text/css" href="../src/main.css"/>
+  <link rel="stylesheet" type="text/css" href="x-tag-components.css" />
+  <link rel="stylesheet" type="text/css" href="../src/main.css" />
 
   <script type="text/javascript" src="x-tag-components.js"></script>
   <script type="text/javascript" src="../src/main.js"></script>
 
-  <style>
-    button {
-      position: fixed;
-      top: 5em;
-      left: 5em;
-      z-index: 10;
-    }
-
-    header,
-    footer {
-      background: lightblue;
-    }
-
-    section {
-      width: 50%;
-      height: 3000px;
-      margin: 0 auto;
-      background: url(lorem.jpg);
-    }
-
-    /*section div {
-      position: fixed;
-      top: 40%;
-      left: 40%;
-      height: 10em;
-      width: 10em;
-      background: purple;
-    }*/
-
-    x-page:nth-child(even) header,
-    x-page:nth-child(even) footer {
-      background: gold;
-    }
-
-  </style>
 </head>
-
 <body>
 
-  <button onclick="active = document.querySelector('[active]'); active.active = false; (active.nextElementSibling || this.nextElementSibling).active = true;">Switch Scenes</button>
+  <button id="switchScene">Switch Scenes</button>
 
-	<x-page active>
+  <x-page active>
     <header>Scene 1 Header</header>
-    <section><div></div></section>
+    <section>
+      <div></div>
+    </section>
     <footer>Scene 1 Footer</footer>
   </x-page>
 
   <x-page page-transition="slide-left">
     <header>Scene 2 Header</header>
-    <section><div></div></section>
+    <section>
+      <div></div>
+    </section>
     <footer>Scene 2 Footer</footer>
   </x-page>
 
   <x-page page-transition="slide-right">
-    <header>Scene 2 Header</header>
-    <section><div></div></section>
-    <footer>Scene 2 Footer</footer>
-  </x-page>
-
-  <x-page>
     <header>Scene 3 Header</header>
-    <section><div></div></section>
+    <section>
+      <div></div>
+    </section>
     <footer>Scene 3 Footer</footer>
   </x-page>
 
   <x-page>
     <header>Scene 4 Header</header>
-    <section><div></div></section>
+    <section>
+      <div></div>
+    </section>
     <footer>Scene 4 Footer</footer>
   </x-page>
 
+  <x-page>
+    <header>Scene 5 Header</header>
+    <section>
+      <div></div>
+    </section>
+    <footer>Scene 5 Footer</footer>
+  </x-page>
+
+  <script>
+(function () {
+	document.getElementById('switchScene').addEventListener('click', function () {
+		var active = document.querySelector('[active]'),
+			next; 
+		active.active = false; 
+		next = (active.nextElementSibling || this.nextElementSibling);
+		if (next.tagName !== 'X-PAGE') {
+			next = document.querySelector('x-page');
+		}
+		next.active = true;
+	}, false);
+}())
+</script>
 
 
 </body>
-
 </html>
